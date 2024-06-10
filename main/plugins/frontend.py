@@ -63,10 +63,10 @@ async def clone(event):
             return
 
         if f'{int(event.sender_id)}' in user:
-            return await event.respond("Please don't spam links, wait until ongoing process is done.")
+            return await event.respond("**Please don't spam links, wait until ongoing process is done.**")
         user.append(f'{int(event.sender_id)}')
 
-        edit = await event.respond("Processing!")
+        edit = await event.respond("**Processing!**")
 
         if "|" in li:
             url = li
@@ -79,7 +79,7 @@ async def clone(event):
 
         try:
             if 't.me/' not in link:
-                await edit.edit("invalid link")
+                await edit.edit("**invalid link**")
                 ind = user.index(f'{int(event.sender_id)}')
                 user.pop(int(ind))
                 return
