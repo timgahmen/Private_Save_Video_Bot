@@ -74,7 +74,7 @@ async def send_video_with_chat_id(client, sender, path, caption, duration, hi, w
             progress=progress_for_pyrogram,
             progress_args=(
                 client,
-                '**__Uploading: [Team SPY](https://t.me/dev_gagan)__**\n ',
+                '**𝘿𝙊𝙒𝙉𝙇𝙊𝘿𝙄𝙉𝙂 📥:**\n\n**𝐁𝐨𝐭 𝐌𝐚𝐝𝐞 𝐁𝐲 [๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**\n ',
                 upm,
                 time.time()
             )
@@ -97,7 +97,7 @@ async def send_document_with_chat_id(client, sender, path, caption, thumb_path, 
             progress=progress_for_pyrogram,
             progress_args=(
                 client,
-                '**__Uploading:__**\n**__Bot made by [Team SPY](https://t.me/dev_gagan)__**',
+                '**𝙐𝙋𝙇𝙊𝘼𝘿𝙄𝙉𝙂 📤:**\n\n**𝐁𝐨𝐭 𝐌𝐚𝐝𝐞 𝐁𝐲 [๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**',
                 upm,
                 time.time()
             )
@@ -215,7 +215,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 progress=progress_for_pyrogram,
                 progress_args=(
                     client,
-                    "**__Unrestricting__: __[Team SPY](https://t.me/dev_gagan)__**\n ",
+                    "**𝙐𝙋𝙇𝙊𝘼𝘿𝙄𝙉𝙂 📤:**\n\n**𝐁𝐨𝐭 𝐌𝐚𝐝𝐞 𝐁𝐲 [๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**\n ",
                     edit,
                     time.time()
                 )
@@ -311,7 +311,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
     chat = ""
     msg_id = int(i)
     if msg_id == -1:
-        await client.edit_message_text(sender, edit_id, "**Invalid Link!**")
+        await client.edit_message_text(sender, edit_id, "**𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗟𝗶𝗻𝗸!**")
         return None
     if 't.me/c/'  in msg_link or 't.me/b/' in msg_link:
         if "t.me/b" not in msg_link:
@@ -384,7 +384,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
                 progress=progress_for_pyrogram,
                 progress_args=(
                     client,
-                    "**__Unrestricting__: __[Team SPY](https://t.me/dev_gagan)__**\n ",
+                    "**𝙐𝙋𝙇𝙊𝘼𝘿𝙄𝙉𝙂 📤:**\n\n**𝐁𝐨𝐭 𝐌𝐚𝐝𝐞 𝐁𝐲 [๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**\n ",
                     edit,
                     time.time()
                 )
