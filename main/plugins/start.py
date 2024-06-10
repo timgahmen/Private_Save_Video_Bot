@@ -23,8 +23,7 @@ async def start(event):
     """
     user_id = event.sender_id
     buttons = [
-        [Button.url("Join Channel", url="https://t.me/devggn")],
-        [Button.url("Contact Me", url="https://t.me/ggnhere")],
+        [Button.url("Join Channel", url="https://t.me/official_satyam01")],
     ]
     # Sending photo with caption and buttons
     await gagan.send_file(
@@ -38,8 +37,8 @@ def thumbnail(chat_id):
     return f'{chat_id}.jpg' if os.path.exists(f'{chat_id}.jpg') else f'thumb.jpg'
 
 S = "/start"
-START_PIC = "https://graph.org/file/1dfb96bd8f00a7c05f164.gif"
-TEXT = "Send me the Link of any message of Restricted Channels to Clone it here.\nFor private channel's messages, send the Invite Link first.\n\n👉🏻 Execute /batch for bulk process upto 10K files range."
+START_PIC = "https://graph.org/file/5e03ce82519cb95379e68.jpg"
+TEXT = "👋 𝗛𝗶, 𝗜 𝗮𝗺 [𝐏𝐫𝐢𝐯𝐚𝐭𝐞 𝐕𝐢𝐝𝐞𝐨 𝐒𝐚𝐯𝐞 𝐁𝐨𝐭 🖲️](https://telegram.me/private_Video_Save_Bot)\n\n👉🏻 **Execute /batch for bulk process upto 100 files range.**"
 
 @gagan.on(events.NewMessage(func=lambda event: event.photo))
 async def save_photo_as_thumbnail(event):
@@ -60,9 +59,9 @@ async def remove_thumbnail(event):
     gagan_client = event.client
     try:
         os.remove(f'{user_id}.jpg')
-        await event.respond('Thumbnail removed successfully!')
+        await event.respond('**Thumbnail removed successfully!**')
     except FileNotFoundError:
-        await event.respond("No thumbnail found to remove.")
+        await event.respond("**No thumbnail found to remove.**")
 
 
 # Function to get video info including duration
@@ -116,7 +115,7 @@ async def youtube_dl_command(_, message):
 
             # Check if the original file exists before renaming
             if not os.path.exists(original_file):
-                await progress_message.edit_text("Failed to download video.")
+                await progress_message.edit_text("**Failed to download video.**")
                 return
 
             # Edit the progress message to indicate uploading
@@ -124,7 +123,7 @@ async def youtube_dl_command(_, message):
 
             # Get video metadata
             metadata = video_metadata(original_file)
-            caption = f"{video_info['title']}\n\n__**Powered by [Advance Content Saver Bot](https://t.me/advance_content_saver_bot)**__"  # Set caption to the title of the video
+            caption = f"{video_info['title']}\n\n__**Powered by [𝐏𝐫𝐢𝐯𝐚𝐭𝐞 𝐕𝐢𝐝𝐞𝐨 𝐒𝐚𝐯𝐞 𝐁𝐨𝐭 🖲️](https://telegram.me/private_Video_Save_Bot)**__"  # Set caption to the title of the video
             
             # Send the video file and thumbnail
             ggn = message.chat.id
@@ -150,7 +149,7 @@ async def youtube_dl_command(_, message):
             await progress_message.edit_text(f"An error occurred: {str(e)}")
 
     else:
-        await message.reply("Please provide a YouTube URL after /dl.")
+        await message.reply("**Please provide a YouTube URL after /dl.**")
 
 
 def video_metadata(file):
@@ -162,9 +161,9 @@ def video_metadata(file):
     duration = round(frame_count / fps)
     return {'width': width, 'height': height, 'duration': duration}
 
-REPO_URL = "https://github.com/devgaganin"
+REPO_URL = "https://t.me/official_satyam01"
 
-HELP_TEXT = """Here are the available commands:
+HELP_TEXT = """**Here are the available commands:**
 
 ➡️ /batch - to process multiple links at once by taking start link, iterating though multple message ids.
 
@@ -180,11 +179,9 @@ No need to add -100 in the userid.
 
 ➡️ /dl - Download videos directly from Youtube, Linkedin, Xvideos, Xnxx, Pinterest, Internet Archive, Amazon Mini Tv.
 
-➡️ /ivalid - try this command if you get peer id invalid erro...
+**Note:** To set your custom thumbnail just sent photo/image without anycommand or else.
 
-Note: To set your custom thumbnail just sent photo/image without anycommand or else.
-
-[GitHub Repository](%s)
+[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](%s)
 """ % REPO_URL
 
 
@@ -194,7 +191,7 @@ async def help_command(event):
     Command to display help message
     """
     # Creating inline keyboard with a button linking to the GitHub repository
-    buttons = [[Button.url("REPO", url=REPO_URL)]]
+    buttons = [[Button.url("๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛", url=REPO_URL)]]
 
     # Sending the help message with the GitHub repository button
     await event.respond(HELP_TEXT, buttons=buttons, link_preview=False)
