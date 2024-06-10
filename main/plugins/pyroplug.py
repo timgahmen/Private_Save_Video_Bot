@@ -114,7 +114,7 @@ async def check(userbot, client, link):
         msg_id = int(link.split("/")[-1])
     except ValueError:
         if '?single' not in link:
-            return False, "**Invalid Link!**"
+            return False, "**𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗟𝗶𝗻𝗸!**"
         link_ = link.split("?single")[0]
         msg_id = int(link_.split("/")[-1])
     if 't.me/c/' in link:
@@ -123,10 +123,10 @@ async def check(userbot, client, link):
             await userbot.get_messages(chat, msg_id)
             return True, None
         except ValueError:
-            return False, "**Invalid Link!**"
+            return False, "**𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗟𝗶𝗻𝗸!**"
         except Exception as e:
             logging.info(e)
-            return False, "Have you joined the channel?"
+            return False, "𝗛𝗮𝘃𝗲 𝘆𝗼𝘂 𝗷𝗼𝗶𝗻𝗲𝗱 𝘁𝗵𝗲 𝗰𝗵𝗮𝗻𝗻𝗲𝗹l?"
     else:
         try:
             chat = str(link.split("/")[-2])
@@ -134,14 +134,14 @@ async def check(userbot, client, link):
             return True, None
         except Exception as e:
             logging.info(e)
-            return False, "Maybe bot is banned from the chat, or your link is invalid!"
+            return False, "𝗠𝗮𝘆𝗯𝗲 𝗯𝗼𝘁 𝗶𝘀 𝗯𝗮𝗻𝗻𝗲𝗱 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗰𝗵𝗮𝘁, 𝗼𝗿 𝘆𝗼𝘂𝗿 𝗹𝗶𝗻𝗸 𝗶𝘀 𝗶𝗻𝘃𝗮𝗹𝗶𝗱!"
             
 async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
     edit = ""
     chat = ""
     msg_id = int(i)
     if msg_id == -1:
-        await client.edit_message_text(sender, edit_id, "**Invalid Link!**")
+        await client.edit_message_text(sender, edit_id, "**𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗟𝗶𝗻𝗸!**")
         return None
     if 't.me/c/'  in msg_link or 't.me/b/' in msg_link:
         
@@ -172,7 +172,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
             
             if msg.media and msg.media==MessageMediaType.WEB_PAGE:
                 a = b = True
-                edit = await client.edit_message_text(sender, edit_id, "Cloning.")
+                edit = await client.edit_message_text(sender, edit_id, "🅲︎🅻︎🅾︎🅽︎🅸︎🅽︎🅶︎.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
                     await send_message_with_chat_id(client, sender, msg.text.html, parse_mode=ParseMode.HTML)
                     a = False
@@ -185,7 +185,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 return None
             if not msg.media and msg.text:
                 a = b = True
-                edit = await client.edit_message_text(sender, edit_id, "Cloning.")
+                edit = await client.edit_message_text(sender, edit_id, "🅲︎🅻︎🅾︎🅽︎🅸︎🅽︎🅶︎.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
                     await send_message_with_chat_id(client, sender, msg.text.html, parse_mode=ParseMode.HTML)
                     a = False
@@ -208,7 +208,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 await client.edit_message_text(sender, edit_id, 'poll media cant be saved')
                 #await edit.delete()
                 return 
-            edit = await client.edit_message_text(sender, edit_id, "Trying to Download.")
+            edit = await client.edit_message_text(sender, edit_id, "𝗧𝗿𝘆𝗶𝗻𝗴 𝘁𝗼 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱.")
             
             file = await userbot.download_media(
                 msg,
@@ -223,7 +223,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
           
             path = file
             await edit.delete()
-            upm = await client.send_message(sender, '__Preparing to Upload!__')
+            upm = await client.send_message(sender, '𝗣𝗿𝗲𝗽𝗮𝗿𝗶𝗻𝗴 𝘁𝗼 𝗨𝗽𝗹𝗼𝗮𝗱!')
             
             caption = str(file)
             if msg.caption is not None:
@@ -295,14 +295,14 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
             await client.edit_message_text(sender, edit_id, "Bot is not in that channel/ group \n send the invite link so that bot can join the channel ")
             return None
     else:
-        edit = await client.edit_message_text(sender, edit_id, "Cloning.")
+        edit = await client.edit_message_text(sender, edit_id, "🅲︎🅻︎🅾︎🅽︎🅸︎🅽︎🅶︎.")
         chat =  msg_link.split("/")[-2]
         await copy_message_with_chat_id(client, sender, chat, msg_id)
         await edit.delete()
         return None   
  
 async def get_bulk_msg(userbot, client, sender, msg_link, i):
-    x = await client.send_message(sender, "Processing!")
+    x = await client.send_message(sender, "𝗣𝗿𝗼𝗰𝗲𝘀𝘀𝗶𝗻𝗴!")
     file_name = ''
     await get_msg(userbot, client, sender, x.id, msg_link, i, file_name) 
 
@@ -341,7 +341,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
             
             if msg.media and msg.media==MessageMediaType.WEB_PAGE:
                 a = b = True
-                edit = await client.edit_message_text(sender, edit_id, "Cloning.")
+                edit = await client.edit_message_text(sender, edit_id, "🅲︎🅻︎🅾︎🅽︎🅸︎🅽︎🅶︎.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
                     await send_message_with_chat_id(client, sender, msg.text.html, parse_mode=ParseMode.HTML)
                     a = False
@@ -354,7 +354,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
                 return None
             if not msg.media and msg.text:
                 a = b = True
-                edit = await client.edit_message_text(sender, edit_id, "Cloning.")
+                edit = await client.edit_message_text(sender, edit_id, "🅲︎🅻︎🅾︎🅽︎🅸︎🅽︎🅶︎.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
                     await send_message_with_chat_id(client, sender, msg.text.html, parse_mode=ParseMode.HTML)
                     a = False
@@ -377,7 +377,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
                 await client.edit_message_text(sender, edit_id, 'poll media cant be saved')
                 #await edit.delete()
                 return 
-            edit = await client.edit_message_text(sender, edit_id, "Trying to Download.")
+            edit = await client.edit_message_text(sender, edit_id, "𝗧𝗿𝘆𝗶𝗻𝗴 𝘁𝗼 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱.")
             
             file = await userbot.download_media(
                 msg,
@@ -392,7 +392,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
           
             path = file
             await edit.delete()
-            upm = await client.send_message(sender, '__Preparing to Upload!__')
+            upm = await client.send_message(sender, '𝗣𝗿𝗲𝗽𝗮𝗿𝗶𝗻𝗴 𝘁𝗼 𝗨𝗽𝗹𝗼𝗮𝗱!')
             
             caption = str(file)
             if msg.caption is not None:
@@ -464,7 +464,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
             await client.edit_message_text(sender, edit_id, "Bot is not in that channel/ group \n send the invite link so that bot can join the channel ")
             return None
     else:
-        edit = await client.edit_message_text(sender, edit_id, "Cloning.")
+        edit = await client.edit_message_text(sender, edit_id, "🅲︎🅻︎🅾︎🅽︎🅸︎🅽︎🅶︎.")
         chat =  msg_link.split("/")[-2]
         await copy_message_with_chat_id(client, sender, chat, msg_id)
         await edit.delete()
