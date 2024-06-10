@@ -50,7 +50,7 @@ def get_readable_file_size(size_in_bytes) -> str:
 
 @gagan.on(events.NewMessage(incoming=True, from_users=SUDO_USERS, pattern='/speedtest'))
 async def speedtest(event):
-    speed = await event.reply("Running Speed Test. Wait about some secs.")  #edit telethon
+    speed = await event.reply("**Running Speed Test. Wait about some secs.**")  #edit telethon
     test = Speedtest()
     test.get_best_server()
     test.download()
