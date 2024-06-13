@@ -16,9 +16,9 @@ logging.getLogger("telethon").setLevel(logging.WARNING)
 
 botStartTime = time.time()
 
-
+print("----------------------")
 print("Successfully deployed!")
-print("Bot Deployed : MR SATYAM")
+print("----------------------")
 
 if __name__ == "__main__":
     from . import bot
@@ -33,6 +33,9 @@ if __name__ == "__main__":
             patt = Path(a.name)
             plugin_name = patt.stem
             load_plugins(plugin_name.replace(".py", ""))
+    print("✅ ✅ ✅ ✅")
+    print("Bot Started :)")
+    print("✅ ✅ ✅ ✅")
     logger.info("Bot Started :)")
+
     bot.run_until_disconnected()
-    

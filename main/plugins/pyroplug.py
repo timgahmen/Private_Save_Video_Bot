@@ -4,7 +4,7 @@ import asyncio, time, os
 
 from pyrogram.enums import ParseMode , MessageMediaType
 
-from .. import Bot, bot
+from .. import Bot, bot, SUDO_USERS
 from main.plugins.progress import progress_for_pyrogram
 from main.plugins.helpers import screenshot
 
@@ -47,17 +47,7 @@ async def send_message_with_chat_id(client, sender, message, parse_mode=None):
         await client.send_message(sender, error_message)
         await client.send_message(sender, f"Make Bot admin in your Channel - {chat_id} and restart the process after /cancel")
   
-@bot.on(events.NewMessage(incoming=True, pattern='/setchat'))
-async def set_chat_id(event):
-    # Extract chat ID from the message
-    try:
-        chat_id = int(event.raw_text.split(" ", 1)[1])
-        # Store user's chat ID
-        user_chat_ids[event.sender_id] = chat_id
-        await event.reply("Chat ID set successfully!")
-    except ValueError:
-        await event.reply("Invalid chat ID!")
-      
+     
 async def send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     chat_id = user_chat_ids.get(sender, sender)
@@ -256,7 +246,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                     logging.info(e)
                     thumb_path = None
                 
-                caption = f"{msg.caption}\n\n__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__" if msg.caption else "__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__"
+                caption = f"{msg.caption}"
                 await send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm)
             elif str(file).split(".")[-1] in ['jpg', 'jpeg', 'png', 'webp']:
                 if file_n != '':
@@ -270,10 +260,11 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                     file = path
 
                 
-                caption = f"{msg.caption}\n\n__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__" if msg.caption else "__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__"
+                caption = f"{msg.caption}"
                 await upm.edit("__Uploading photo...__")
 
                 await bot.send_file(sender, path, caption=caption)
+
             else:
                 if file_n != '':
                     #path = ''
@@ -286,7 +277,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                     file = path
                 thumb_path = "thumb.jpg"
                 
-                caption = f"{msg.caption}\n\n__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__" if msg.caption else "__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__"
+                caption = f"{msg.caption}"
                 await send_document_with_chat_id(client, sender, path, caption, thumb_path, upm)
             os.remove(file)
             await upm.delete()
@@ -425,7 +416,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
                     logging.info(e)
                     thumb_path = None
                 
-                caption = f"{msg.caption}\n\n__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__" if msg.caption else "__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__"
+                caption = f"{msg.caption}"
                 await send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm)
             elif str(file).split(".")[-1] in ['jpg', 'jpeg', 'png', 'webp']:
                 if file_n != '':
@@ -439,10 +430,10 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
                     file = path
 
                 
-                caption = f"{msg.caption}\n\n__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__" if msg.caption else "__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__"
+                caption = f"{msg.caption}"
                 await upm.edit("__Uploading photo...__")
 
-                await bot.send_file(sender, path, caption=caption)
+                await bot.send_file(chat, path, caption=caption)
             else:
                 if file_n != '':
                     #path = ''
@@ -455,7 +446,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
                     file = path
                 thumb_path = "thumb.jpg"
                 
-                caption = f"{msg.caption}\n\n__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__" if msg.caption else "__Unrestricted by **[๛𝐌𝐑๛𝐒𝐀𝐓𝐘𝐀𝐌๛](tg://openmessage?user_id=6090912349)**__"
+                caption = f"{msg.caption}"
                 await send_document_with_chat_id(client, sender, path, caption, thumb_path, upm)
             os.remove(file)
             await upm.delete()
@@ -468,4 +459,45 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
         chat =  msg_link.split("/")[-2]
         await copy_message_with_chat_id(client, sender, chat, msg_id)
         await edit.delete()
-        return None   
+        return None
+
+# -------------------------------------------------------------------------------------------------------------
+# Setchat
+# -------------------------------------------------------------------------------------------------------------
+
+@bot.on(
+    events.NewMessage(incoming=True,
+                      from_users=SUDO_USERS,
+                      pattern="/setchat",
+                      func=lambda e: e.is_private))
+async def set_chat_id(event):
+    # Extract chat ID from the message
+    try:
+        chat_id = int(event.raw_text.split(" ", 1)[1])
+        # Store user's chat ID
+        user_chat_ids[event.sender_id] = chat_id
+        #await event.reply("Chat ID set successfully!")
+        await event.reply(f"Channel ID updated to {chat_id}")
+
+    except IndexError:
+        await event.reply("Please provide a new channel ID after the /setchat command.")
+    except ValueError:
+        await event.reply("Invalid chat ID!")
+
+
+
+@bot.on(
+    events.NewMessage(incoming=True,
+                      from_users=SUDO_USERS,
+                      pattern="/showchat",
+                      func=lambda e: e.is_private))
+async def showchat(event):
+    if event.sender_id in SUDO_USERS:
+                #chatinfo = Client.get_entity(Channel_ID)
+                await event.reply(#f'Channel_ID: {chat_id}\n'
+                                  f'Channel_ID: {user_chat_ids[event.sender_id]}\n'
+                                  #f'chatinfo: {chatinfo}\n'
+                                  #f'chat: {chat}\n'
+                                  )
+        else:
+                await event.answer("You are not authorized to use this feature.")
